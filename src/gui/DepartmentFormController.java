@@ -23,8 +23,7 @@ import model.entities.Department;
 import model.exceptions.ValidationException;
 import model.services.DepartmentService;
 
-public class DepartmentFormController implements Initializable {
-	
+public class DepartmentFormController implements Initializable {	
 	private Department entity;
 
 	private DepartmentService service;
@@ -66,9 +65,9 @@ public class DepartmentFormController implements Initializable {
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
-
 		try {
 			entity = getFormData();
+			
 			service.saveOrUpdate(entity);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
@@ -88,8 +87,7 @@ public class DepartmentFormController implements Initializable {
 	}
 
 	private Department getFormData() {
-		Department obj = new Department();
-		
+		Department obj = new Department();		
 		ValidationException exception = new ValidationException("Validation error");
 
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
@@ -101,8 +99,7 @@ public class DepartmentFormController implements Initializable {
 		
 		if(exception.getErrors().size() > 0 ) {
 			throw exception; 
-		}
-		
+		}		
 		return obj;
 	}
 
@@ -125,7 +122,6 @@ public class DepartmentFormController implements Initializable {
 		if (entity == null) {
 			throw new IllegalStateException("Entity was null");
 		}
-
 		txtId.setText(String.valueOf(entity.getId()));
 		txtName.setText(entity.getName());
 	}

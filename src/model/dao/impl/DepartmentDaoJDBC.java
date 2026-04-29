@@ -29,10 +29,13 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		try {
 			st = conn.prepareStatement(
 				"SELECT * FROM department WHERE Id = ?");
+			
 			st.setInt(1, id);
 			rs = st.executeQuery();
+			
 			if (rs.next()) {
 				Department obj = new Department();
+				
 				obj.setId(rs.getInt("Id"));
 				obj.setName(rs.getString("Name"));
 				return obj;
@@ -55,12 +58,13 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		try {
 			st = conn.prepareStatement(
 				"SELECT * FROM department ORDER BY Name");
+			
 			rs = st.executeQuery();
-
 			List<Department> list = new ArrayList<>();
 
 			while (rs.next()) {
 				Department obj = new Department();
+				
 				obj.setId(rs.getInt("Id"));
 				obj.setName(rs.getString("Name"));
 				list.add(obj);
@@ -121,7 +125,6 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 			st.setString(1, obj.getName());
 			st.setInt(2, obj.getId());
-
 			st.executeUpdate();
 		}
 		catch (SQLException e) {
@@ -140,7 +143,6 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 				"DELETE FROM department WHERE Id = ?");
 
 			st.setInt(1, id);
-
 			st.executeUpdate();
 		}
 		catch (SQLException e) {

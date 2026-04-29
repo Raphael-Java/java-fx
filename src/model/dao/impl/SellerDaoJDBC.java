@@ -206,8 +206,7 @@ public class SellerDaoJDBC implements SellerDao {
 			
 			st.setInt(1, department.getId());
 			
-			rs = st.executeQuery();
-			
+			rs = st.executeQuery();			
 			List<Seller> list = new ArrayList<>();
 			Map<Integer, Department> map = new HashMap<>();
 			
